@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>DemoMaven</artifactId>
+    <artifactId>Newsoft</artifactId>
     <version>1.0-SNAPSHOT</version>
 
 
@@ -24,12 +24,20 @@
             <scope>provided</scope>
         </dependency>
 
-<!--        mysql jdbc-->
+<!--        com.neusoft.mysql jdbc-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.37</version>
         </dependency>
+
+<!--        druid-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
     </dependencies>
 
 <!--    tomcat-->
@@ -37,5 +45,6 @@
 <!--        <groupId>org.apache.tomcat</groupId>-->
 <!--        <artifactId>tomcat-catalina</artifactId>-->
 <!--    <version>8.0.32</version>-->
+
 
 </project>
