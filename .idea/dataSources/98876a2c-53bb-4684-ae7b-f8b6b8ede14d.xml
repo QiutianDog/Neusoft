@@ -660,75 +660,120 @@
       <ObjectGrants>ALL PRIVILEGES!
 </ObjectGrants>
     </user>
-    <table id="205" parent="5" name="student"/>
-    <table id="206" parent="5" name="user"/>
-    <column id="207" parent="205" name="id">
+    <table id="205" parent="5" name="emp">
+      <Engine>MyISAM</Engine>
+    </table>
+    <table id="206" parent="5" name="student"/>
+    <table id="207" parent="5" name="user"/>
+    <column id="208" parent="205" name="EMPNO">
+      <Position>1</Position>
+      <DataType>int(4)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="209" parent="205" name="ENAME">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+    </column>
+    <column id="210" parent="205" name="JOB">
+      <Position>3</Position>
+      <DataType>varchar(9)|0s</DataType>
+    </column>
+    <column id="211" parent="205" name="MGR">
+      <Position>4</Position>
+      <DataType>int(4)|0s</DataType>
+    </column>
+    <column id="212" parent="205" name="HIREDATE">
+      <Position>5</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="213" parent="205" name="SAL">
+      <Position>6</Position>
+      <DataType>int(7)|0s</DataType>
+    </column>
+    <column id="214" parent="205" name="COMM">
+      <Position>7</Position>
+      <DataType>int(7)|0s</DataType>
+    </column>
+    <column id="215" parent="205" name="DEPTNO">
+      <Position>8</Position>
+      <DataType>int(2)|0s</DataType>
+    </column>
+    <index id="216" parent="205" name="FK_DEPTNO">
+      <ColNames>DEPTNO</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="217" parent="205" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>EMPNO</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="218" parent="206" name="id">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="208" parent="205" name="name">
+    <column id="219" parent="206" name="name">
       <Position>2</Position>
       <DataType>varchar(8)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="209" parent="205" name="age">
+    <column id="220" parent="206" name="age">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="210" parent="205" name="gender">
+    <column id="221" parent="206" name="gender">
       <Position>4</Position>
       <DataType>char(2)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="211" parent="205" name="insert_time">
+    <column id="222" parent="206" name="insert_time">
       <Position>5</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <index id="212" parent="205" name="name">
+    <index id="223" parent="206" name="name">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="213" parent="205" name="PRIMARY">
+    <key id="224" parent="206" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="214" parent="205" name="name">
+    <key id="225" parent="206" name="name">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>name</UnderlyingIndexName>
     </key>
-    <column id="215" parent="206" name="id">
+    <column id="226" parent="207" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="216" parent="206" name="username">
+    <column id="227" parent="207" name="username">
       <Position>2</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="217" parent="206" name="password">
+    <column id="228" parent="207" name="password">
       <Position>3</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="218" parent="206" name="user_username_uindex">
+    <index id="229" parent="207" name="user_username_uindex">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="219" parent="206" name="PRIMARY">
+    <key id="230" parent="207" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="220" parent="206" name="user_username_uindex">
+    <key id="231" parent="207" name="user_username_uindex">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>user_username_uindex</UnderlyingIndexName>
     </key>
