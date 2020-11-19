@@ -6,6 +6,7 @@ import java.sql.Date;
 
 @Data
 public class Employee {
+    // 员工信息
     private Integer empno;
     private String ename;
     private String job;
