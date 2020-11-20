@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
+import java.util.Map;
 
 public class AdminDaoImpl implements AdminDao {
 
@@ -16,10 +17,14 @@ public class AdminDaoImpl implements AdminDao {
         template = new JdbcTemplate(DruidUtils.getDataSource());
     }
 
-    @Override
-    public List<Admin> listAdmin() {
-        String sql = "select * from admin";
-        return template.query(sql, new BeanPropertyRowMapper<>(Admin.class));
-    }
 
+    @Override
+    public Admin getAdminByNameAndPassword(String adminName, String password) {
+        String sql = "select * from admin where adminName = ? and password = ?";
+        List<Admin> list = template.query(sql, new BeanPropertyRowMapper<>(Admin.class), adminName, password);
+        if (list.size() == 1) {
+            return list.get(0);
+        }
+        return null;
+    }
 }

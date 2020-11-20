@@ -3,7 +3,6 @@ package com.neusoft.elm.dao.impl;
 import com.neusoft.elm.dao.BusinessDao;
 import com.neusoft.elm.obj.Business;
 import com.neusoft.mysql.druid.utils.DruidUtils;
-import org.junit.Test;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
