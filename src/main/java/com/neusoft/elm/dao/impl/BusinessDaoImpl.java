@@ -12,6 +12,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 商店接口的实现
+ * @author QiutianDog
+ */
 public class BusinessDaoImpl implements BusinessDao {
 
     private final JdbcTemplate template;
@@ -29,12 +33,14 @@ public class BusinessDaoImpl implements BusinessDao {
     @Override
     public Integer saveBusiness(String businessName, String password) {
         String sql = "insert into business(businessName, password) values(?, ?)";
-        template.update(sql, businessName, password);
+        int i = template.update(sql, businessName, password);
 
-        // 获取自增长的Id
-        Map<String, Object> map = template.queryForMap("select * from business where businessName = ?", businessName);
-        Object businessId = map.get("businessId");
-        return (Integer) businessId;
+        if (i == 1) {
+            // 获取自增长的Id
+            Map<String, Object> map = template.queryForMap("select * from business where businessName = ?", businessName);
+            Object businessId = map.get("businessId");
+            return (Integer) businessId;
+        } else return null;
     }
 
 

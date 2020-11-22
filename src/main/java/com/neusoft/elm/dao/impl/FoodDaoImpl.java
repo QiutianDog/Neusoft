@@ -8,13 +8,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
+/**
+ * 食物接口的实现
+ * @author QiutianDog
+ */
 public class FoodDaoImpl implements FoodDao {
 
-    private JdbcTemplate template;
-
-    public FoodDaoImpl() {
-        template = new JdbcTemplate(DruidUtils.getDataSource());
-    }
+    private JdbcTemplate template = new JdbcTemplate(DruidUtils.getDataSource());;
 
     @Override
     public List<Food> listFood() {

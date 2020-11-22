@@ -3,6 +3,7 @@ package com.neusoft.elm.obj;
 import lombok.Data;
 
 /**
+ * 商家对象
  * @author QiutianDog
  */
 @Data

@@ -7,16 +7,14 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
-import java.util.Map;
 
+/**
+ * 管理员接口的实现
+ * @author QiutianDog
+ */
 public class AdminDaoImpl implements AdminDao {
 
-    private JdbcTemplate template;
-
-    public AdminDaoImpl() {
-        template = new JdbcTemplate(DruidUtils.getDataSource());
-    }
-
+    private final JdbcTemplate template = new JdbcTemplate(DruidUtils.getDataSource());
 
     @Override
     public Admin getAdminByNameAndPassword(String adminName, String password) {

@@ -2,9 +2,15 @@ package com.neusoft.elm.obj;
 
 import lombok.Data;
 
+/**
+ * 食物对象
+ * @author QiutianDog
+ */
 @Data
 public class Food {
-    // 食物
+    /**
+     * 食物信息
+     */
     private Integer foodId;
     private String foodName;
     private String foodExplain;
