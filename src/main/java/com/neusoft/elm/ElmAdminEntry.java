@@ -8,7 +8,10 @@ import com.neusoft.elm.view.impl.BusinessViewImpl;
 
 import java.util.Scanner;
 
-// 饿了么的控制台版 JDBC 管理系统
+/**
+ * 饿了么的控制台版 JDBC 管理系统
+ * @author QiutianDog
+  */
 public class ElmAdminEntry {
     public static void main(String[] args) {
         run();
@@ -26,17 +29,33 @@ public class ElmAdminEntry {
         if (admin != null) {
             System.out.println("Login successful!");
             BusinessView businessView = new BusinessViewImpl();
+            int menu = 0;
+            int exit = 6;
 
-
-            while (true) {
+            while (menu != exit) {
                 outputMessage();
-                String menu = sc.next();
+                menu = getMenu(sc);
                 switch (menu){
-                    case "1":
+                    case 1:
                         businessView.listBusiness();
                         break;
-                    case "5":
-                        return;
+                    case 2:
+                        businessView.selectBusinessById();
+                        break;
+                    case 3:
+                        businessView.saveBusiness();
+                        break;
+                    case 4:
+                        businessView.updateBusiness();
+                        break;
+                    case 5:
+                        businessView.removeBusiness();
+                        break;
+                    case 6:
+                        System.out.println("欢迎再来!");
+                        break;
+                    default:
+                        System.out.println("没有这个选项!");
                 }
             }
         } else {
@@ -45,12 +64,26 @@ public class ElmAdminEntry {
     }
 
     public static void outputMessage() {
-        System.out.println("1.查看所有商家");
-        System.out.println("2.搜索商家");
-        System.out.println("3.新建商家");
-        System.out.println("4.删除商家");
-        System.out.println("5.退出系统");
-        System.out.printf(">");
+        System.out.println("*******************");
+        System.out.println("*  1.查看所有的商家  *");
+        System.out.println("*  2.搜索商家       *");
+        System.out.println("*  3.新建商家       *");
+        System.out.println("*  4.修改商家       *");
+        System.out.println("*  5.删除商家       *");
+        System.out.println("*  6.退出系统       *");
+        System.out.println("*******************");
+        System.out.print(">");
+    }
+
+    public static Integer getMenu(Scanner sc) {
+        while (true) {
+            String s = sc.next();
+            if (s.length() == 1) {
+                if (s.charAt(0) >= '1' && s.charAt(0) <= '6') {
+                    return s.charAt(0) - '0';
+                }
+            }
+        }
     }
 
 }

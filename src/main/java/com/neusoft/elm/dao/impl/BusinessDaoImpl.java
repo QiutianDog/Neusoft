@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class BusinessDaoImpl implements BusinessDao {
 
-    private JdbcTemplate template;
+    private final JdbcTemplate template;
 
     public BusinessDaoImpl() {
         template = new JdbcTemplate(DruidUtils.getDataSource());
@@ -55,7 +55,9 @@ public class BusinessDaoImpl implements BusinessDao {
             return i;
         } catch (SQLException throwables) {
             try {
-                conn.rollback();
+                if (conn != null) {
+                    conn.rollback();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -112,7 +114,9 @@ public class BusinessDaoImpl implements BusinessDao {
             return i;
         } catch (SQLException throwables) {
             try {
-                conn.rollback();
+                if (conn != null) {
+                    conn.rollback();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -129,6 +133,16 @@ public class BusinessDaoImpl implements BusinessDao {
         String sql = "select * from business where businessId = ?";
         List<Business> list = template.query(sql, new BeanPropertyRowMapper<>(Business.class), businessId);
         if (list.size() != 0) {
+            return list.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public Business getBusinessByIdAndPassword(Integer businessId, String password) {
+        String sql = "select * from business where businessId = ? and password = ?";
+        List<Business> list = template.query(sql, new BeanPropertyRowMapper<>(Business.class), businessId, password);
+        if (list.size() == 1){
             return list.get(0);
         }
         return null;

@@ -2,9 +2,14 @@ package com.neusoft.elm.obj;
 
 import lombok.Data;
 
+/**
+ * @author QiutianDog
+ */
 @Data
 public class Business {
-    // 商家信息
+    /**
+     * 商家信息
+     */
     private Integer businessId;
     private String password;
     private String businessName;
