@@ -28,7 +28,6 @@ public class ElmAdminEntry {
 
         if (admin != null) {
             System.out.println("Login successful!");
-            BusinessView businessView = new BusinessViewImpl();
             int menu = 0;
             int exit = 6;
 
@@ -37,19 +36,19 @@ public class ElmAdminEntry {
                 menu = getMenu(sc);
                 switch (menu){
                     case 1:
-                        businessView.listBusiness();
+                        adminView.listBusiness();
                         break;
                     case 2:
-                        businessView.selectBusinessById();
+                        adminView.selectBusinessById();
                         break;
                     case 3:
-                        businessView.saveBusiness();
+                        adminView.saveBusiness();
                         break;
                     case 4:
-                        businessView.updateBusiness();
+                        adminView.updateBusiness();
                         break;
                     case 5:
-                        businessView.removeBusiness();
+                        adminView.removeBusiness();
                         break;
                     case 6:
                         System.out.println("欢迎再来!");
