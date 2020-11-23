@@ -16,16 +16,15 @@ public class AdminViewImpl implements AdminView {
 
     @Override
     public Admin login() {
-        System.out.printf("adminName:");
+        System.out.print("adminName:");
         String adminName = sc.next();
 
-        System.out.printf("password:");
+        System.out.print("password:");
         String password = sc.next();
 
         AdminDao dao = new AdminDaoImpl();
 
-        Admin admin = dao.getAdminByNameAndPassword(adminName, password);
-        return admin;
+        return dao.getAdminByNameAndPassword(adminName, password);
     }
 
     @Override

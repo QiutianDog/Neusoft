@@ -54,12 +54,4 @@ public interface AdminDao {
      */
     Business selectBusinessById(Integer businessId);
 
-    /**
-     * 商家登录
-     * @param businessId 账号
-     * @param password 密码
-     * @return 商家对象
-     */
-    Business getBusinessByIdAndPassword(Integer businessId, String password);
-
 }

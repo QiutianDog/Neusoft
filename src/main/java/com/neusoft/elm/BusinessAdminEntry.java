@@ -2,9 +2,7 @@ package com.neusoft.elm;
 
 import com.neusoft.elm.obj.Business;
 import com.neusoft.elm.view.BusinessView;
-import com.neusoft.elm.view.FoodView;
 import com.neusoft.elm.view.impl.BusinessViewImpl;
-import com.neusoft.elm.view.impl.FoodViewImpl;
 
 import java.util.Scanner;
 
