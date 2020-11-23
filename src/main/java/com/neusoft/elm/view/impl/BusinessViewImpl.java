@@ -99,7 +99,7 @@ public class BusinessViewImpl implements BusinessView {
             if (i == 1) {
                 System.out.println("update business succeed!");
             } else {
-                System.out.printf("update business have some problem, you may changed %d lines\n", i);
+                System.out.printf("update business have some problem, you changed %d lines\n", i);
             }
         } else {
             System.out.println("no info about " + businessId);
