@@ -1,4 +1,4 @@
-package com.neusoft.mysql.druid.utils;
+package com.neusoft.elm.utils;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
@@ -9,17 +9,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-// 连接池工具类
-public class DruidUtils {
-
-    // 连接池对象
+/**
+ * @author QiutianDog
+ * @Date 2020/11/23
+ */
+public class JdbcUtils {
     private static DataSource ds;
 
     static {
         try {
             // 加载配置文件
             Properties prop = new Properties();
-            prop.load(DruidUtils.class.getClassLoader().getResourceAsStream("druid.properties"));
+            prop.load(JdbcUtils.class.getClassLoader().getResourceAsStream("jdbc.properties"));
             ds = DruidDataSourceFactory.createDataSource(prop);
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,5 +66,4 @@ public class DruidUtils {
         }
         close(stmt, conn);
     }
-
 }

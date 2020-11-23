@@ -1,9 +1,9 @@
 package com.neusoft.elm.dao.impl;
 
 import com.neusoft.elm.dao.AdminDao;
+import com.neusoft.elm.utils.JdbcUtils;
 import com.neusoft.elm.obj.Admin;
 import com.neusoft.elm.obj.Business;
-import com.neusoft.mysql.druid.utils.DruidUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class AdminDaoImpl implements AdminDao {
 
-    private final JdbcTemplate template = new JdbcTemplate(DruidUtils.getDataSource());
+    private final JdbcTemplate template = new JdbcTemplate(JdbcUtils.getDataSource());
 
     @Override
     public Admin getAdminByNameAndPassword(String adminName, String password) {
@@ -58,7 +58,7 @@ public class AdminDaoImpl implements AdminDao {
         Connection conn = null;
         PreparedStatement pstmt = null;
         try {
-            conn = DruidUtils.getConnect();
+            conn = JdbcUtils.getConnect();
             conn.setAutoCommit(false);
 
             pstmt = conn.prepareStatement(sql);
@@ -77,7 +77,7 @@ public class AdminDaoImpl implements AdminDao {
             }
             throwables.printStackTrace();
         } finally {
-            DruidUtils.close(pstmt, conn);
+            JdbcUtils.close(pstmt, conn);
         }
 
         return -1;

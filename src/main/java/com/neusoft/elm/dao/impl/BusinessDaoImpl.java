@@ -1,8 +1,8 @@
 package com.neusoft.elm.dao.impl;
 
 import com.neusoft.elm.dao.BusinessDao;
+import com.neusoft.elm.utils.JdbcUtils;
 import com.neusoft.elm.obj.Business;
-import com.neusoft.mysql.druid.utils.DruidUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class BusinessDaoImpl implements BusinessDao {
 
-    private final JdbcTemplate template = new JdbcTemplate(DruidUtils.getDataSource());
+    private final JdbcTemplate template = new JdbcTemplate(JdbcUtils.getDataSource());
 
     @Override
     public Business getBusinessByIdAndPassword(Integer businessId, String password) {
@@ -45,7 +45,7 @@ public class BusinessDaoImpl implements BusinessDao {
         PreparedStatement pstmt = null;
         try {
             int i = -1;
-            conn = DruidUtils.getConnect();
+            conn = JdbcUtils.getConnect();
             conn.setAutoCommit(false);
 
             if (business.getBusinessName() != null) {
@@ -92,7 +92,7 @@ public class BusinessDaoImpl implements BusinessDao {
             }
             throwables.printStackTrace();
         } finally {
-            DruidUtils.close(pstmt, conn);
+            JdbcUtils.close(pstmt, conn);
         }
 
         return -1;
