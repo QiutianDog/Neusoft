@@ -1,9 +1,6 @@
 package com.neusoft.elm.dao;
 
 import com.neusoft.elm.obj.Business;
-import com.neusoft.elm.obj.Food;
-
-import java.util.List;
 
 /**
  * 商家Dao层

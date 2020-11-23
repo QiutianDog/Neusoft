@@ -2,7 +2,7 @@ package com.neusoft.elm.dao.impl;
 
 import com.neusoft.elm.dao.FoodDao;
 import com.neusoft.elm.obj.Food;
-import com.neusoft.elm.utils.DruidUtils;
+import com.neusoft.elm.utils.JdbcUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class FoodDaoImpl implements FoodDao {
 
-    private final JdbcTemplate template = new JdbcTemplate(DruidUtils.getDataSource());
+    private final JdbcTemplate template = new JdbcTemplate(JdbcUtils.getDataSource());
 
     @Override
     public List<Food> listFood() {
@@ -61,7 +61,7 @@ public class FoodDaoImpl implements FoodDao {
         PreparedStatement pstmt = null;
         try {
             int count = -1;
-            conn = DruidUtils.getConnect();
+            conn = JdbcUtils.getConnect();
             conn.setAutoCommit(false);
 
             if (food.getFoodName() != null) {
@@ -96,7 +96,7 @@ public class FoodDaoImpl implements FoodDao {
             }
             throwables.printStackTrace();
         } finally {
-            DruidUtils.close(pstmt, conn);
+            JdbcUtils.close(pstmt, conn);
         }
 
         return -1;

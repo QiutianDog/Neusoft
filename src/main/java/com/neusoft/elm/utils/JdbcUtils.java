@@ -27,17 +27,26 @@ public class JdbcUtils {
         }
     }
 
-    // 获取连接对象
+    /**
+     * 获取连接对象
+      */
     public static Connection getConnect() throws SQLException {
         return ds.getConnection();
     }
 
-    // 获取连接池对象
+    /**
+     * 获取连接池对象
+     * @return 连接池对象
+     */
     public static DataSource getDataSource() {
         return ds;
     }
 
-    // 释放资源
+    /**
+     * 释放资源
+     * @param stmt Statement
+     * @param conn Connection
+     */
     public static void close(Statement stmt, Connection conn) {
         if (stmt != null) {
             try {
