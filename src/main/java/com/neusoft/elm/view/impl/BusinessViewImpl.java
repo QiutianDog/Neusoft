@@ -117,4 +117,14 @@ public class BusinessViewImpl implements BusinessView {
             System.out.println("no info about businessId = " + businessId);
         }
     }
+
+    @Override
+    public Business login() {
+        System.out.print("BusinessId:");
+        int BusinessId = sc.nextInt();
+
+        System.out.print("password:");
+        String password = sc.next();
+        return businessDao.getBusinessByIdAndPassword(BusinessId, password);
+    }
 }
