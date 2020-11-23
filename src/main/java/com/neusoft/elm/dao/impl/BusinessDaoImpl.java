@@ -40,7 +40,9 @@ public class BusinessDaoImpl implements BusinessDao {
             Map<String, Object> map = template.queryForMap("select * from business where businessName = ?", businessName);
             Object businessId = map.get("businessId");
             return (Integer) businessId;
-        } else return null;
+        } else {
+            return null;
+        }
     }
 
 
