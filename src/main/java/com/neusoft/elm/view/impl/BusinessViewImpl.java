@@ -6,6 +6,7 @@ import com.neusoft.elm.dao.impl.BusinessDaoImpl;
 import com.neusoft.elm.obj.Business;
 import com.neusoft.elm.obj.Food;
 import com.neusoft.elm.view.BusinessView;
+import com.neusoft.elm.view.FoodView;
 
 import java.util.List;
 import java.util.Scanner;
@@ -22,7 +23,7 @@ public class BusinessViewImpl implements BusinessView {
     @Override
     public Business login() {
         System.out.print("BusinessId:");
-        int businessId = sc.nextInt();
+        Integer businessId = sc.nextInt();
 
         System.out.print("password:");
         String password = sc.next();
@@ -98,105 +99,57 @@ public class BusinessViewImpl implements BusinessView {
     }
 
     @Override
-    public void listFood() {
-        List<Food> foods = businessDao.listFood();
-        for (Food food : foods) {
-            System.out.println(food);
-        }
-    }
-
-    @Override
-    public void listFood(Integer businessId) {
-        List<Food> foods = businessDao.listFood(businessId);
-        for (Food food : foods) {
-            System.out.println(food);
-        }
-    }
-
-    @Override
-    public void saveFood(Integer businessId) {
-        System.out.print("foodName:");
-        String foodName = sc.next();
-
-        System.out.print("foodExplain:");
-        String foodExplain = sc.next();
-
-        System.out.print("foodExplain:");
-        Double foodPrice = sc.nextDouble();
-
-        Food food = new Food(null, foodName, foodExplain, foodPrice, businessId);
-        Integer foodId = businessDao.saveFood(businessId, food);
-        if (foodId != null) {
-            System.out.println("create food succeed! foodId = " + foodId);
-        } else {
-            System.out.println("create food fault!");
-        }
-    }
-
-    @Override
-    public void removeFood(Integer businessId) {
-        System.out.print("foodId:");
-        int foodId = sc.nextInt();
-        int i = businessDao.removeFood(businessId, foodId);
-        if (i == 1) {
-            System.out.printf("remove food %d succeed!\n", foodId);
-        } else {
-            System.out.printf("remove fault, maybe foodId %d is wrong.\n", foodId);
-        }
-    }
-
-    @Override
-    public void updateFood(Integer businessId) {
-        System.out.print("foodId:");
-        int foodId = sc.nextInt();
-
-        // 查找是否有这个食物
-        Food food = businessDao.selectFoodById(businessId, foodId);
-        if (food != null) {
-            // 如果有的话就修改信息
-            System.out.println("please input some information!");
-            System.out.println("'null' or info");
-            String change = "null";
-
-            System.out.print("foodName:");
-            String foodName = sc.next();
-            if (!change.equals(foodName)) {
-                food.setFoodName(foodName);
+    public void controlFood(Integer businessId) {
+        int menu = 0;
+        int exit = 6;
+        FoodView foodView = new FoodViewImpl();
+        while (exit != menu) {
+            outputFoodMessage();
+            menu = getMenu(sc);
+            switch (menu) {
+                case 1:
+                    foodView.listFood(businessId);
+                    break;
+                case 2:
+                    foodView.saveFood(businessId);
+                    break;
+                case 3:
+                    foodView.removeFood(businessId);
+                    break;
+                case 4:
+                    foodView.updateFood(businessId);
+                    break;
+                case 5:
+                    foodView.selectFoodById(businessId);
+                    break;
+                case 6:
+                    System.out.println("return Business!");
+                    break;
+                default:
             }
-
-            System.out.print("foodExplain:");
-            String foodExplain = sc.next();
-            if (!change.equals(foodExplain)) {
-                food.setFoodExplain(foodExplain);
-            }
-
-
-            System.out.print("foodPrice:");
-            String foodPrice = sc.next();
-            if (!change.equals(foodPrice)) {
-                food.setFoodPrice(Double.valueOf(foodPrice));
-            }
-
-            int i = businessDao.updateFood(food);
-            if (i == 1) {
-                System.out.println("update food succeed!");
-            } else {
-                System.out.printf("update food have some problem, you changed %d lines\n", i);
-            }
-        } else {
-            System.out.printf("no such food, you may input the wrong foodId = %d\n", foodId);
         }
     }
 
-    @Override
-    public void selectFoodById(Integer businessId) {
-        System.out.print("foodId:");
-        int foodId = sc.nextInt();
-        Food food = businessDao.selectFoodById(businessId, foodId);
-        if (food != null) {
-            System.out.println(food);
-        } else {
-            System.out.println("not found!");
+    public void outputFoodMessage() {
+        System.out.println("+-----------------+");
+        System.out.println("|   1.列出食品清单   |");
+        System.out.println("|   2.添加食品      |");
+        System.out.println("|   3.删除食品      |");
+        System.out.println("|   4.修改食品信息   |");
+        System.out.println("|   5.查询食品      |");
+        System.out.println("|   6.退出食品管理   |");
+        System.out.println("+-----------------+");
+        System.out.print(">");
+    }
+
+    public Integer getMenu(Scanner sc) {
+        while (true) {
+            String s = sc.next();
+            if (s.length() == 1) {
+                if (s.charAt(0) >= '1' && s.charAt(0) <= '6') {
+                    return s.charAt(0) - '0';
+                }
+            }
         }
     }
 }

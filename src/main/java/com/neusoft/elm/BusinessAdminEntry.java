@@ -52,11 +52,12 @@ public class BusinessAdminEntry {
                         businessView.updateBusinessPassword(business.getBusinessId());
                         break;
                     case 4:
-
+                        businessView.controlFood(business.getBusinessId());
                         // 所属商品管理
                         break;
                     case 5:
                         // 退出系统
+                        System.out.println("exit OK!");
                         break;
                     default:
                 }
@@ -72,8 +73,7 @@ public class BusinessAdminEntry {
         System.out.println("*  2.修改商家信息     *");
         System.out.println("*  3.修改密码        *");
         System.out.println("*  4.所属商品管理     *");
-        System.out.println("*  5.删除食品        *");
-        System.out.println("*  6.退出系统        *");
+        System.out.println("*  5.退出系统        *");
         System.out.println("********************");
         System.out.print(">");
     }
