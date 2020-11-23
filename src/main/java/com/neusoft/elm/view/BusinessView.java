@@ -14,6 +14,24 @@ public interface BusinessView {
     Business login();
 
     /**
+     * 显示商家信息
+     * @param businessId 指定商家
+     */
+    void outputBusinessById(Integer businessId);
+
+    /**
+     * 修改商家信息
+     * @param businessId 指定商家
+     */
+    void updateBusiness(Integer businessId);
+
+    /**
+     * 修改商家密码
+     * @param businessId 指定商家
+     */
+    void updateBusinessPassword(Integer businessId);
+
+    /**
      * 列出食品清单
      */
     void listFood();

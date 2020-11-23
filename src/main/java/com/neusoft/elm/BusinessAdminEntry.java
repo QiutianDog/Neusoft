@@ -31,8 +31,6 @@ public class BusinessAdminEntry {
             System.out.println("Login successful!");
             System.out.println("welcome back " + business.getBusinessName() + " !");
 
-            FoodView foodView = new FoodViewImpl();
-            // TODO 考虑是否应该限制商家只能操作属于自己店的食品
 
             int menu = 0;
             int exit = 5;
@@ -43,15 +41,18 @@ public class BusinessAdminEntry {
                 switch (menu) {
                     case 1:
                         // 查看商家信息
-
+                        businessView.outputBusinessById(business.getBusinessId());
                         break;
                     case 2:
                         // 修改商家信息
+                        businessView.updateBusiness(business.getBusinessId());
                         break;
                     case 3:
                         // 修改密码
+                        businessView.updateBusinessPassword(business.getBusinessId());
                         break;
                     case 4:
+
                         // 所属商品管理
                         break;
                     case 5:

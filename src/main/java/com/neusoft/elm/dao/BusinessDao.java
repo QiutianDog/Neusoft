@@ -20,6 +20,32 @@ public interface BusinessDao {
     Business getBusinessByIdAndPassword(Integer businessId, String password);
 
     /**
+     * 获取商家
+     * @param businessId 指定商家
+     * @return 商家对象
+     */
+    Business getBusinessById(Integer businessId);
+
+    /**
+     * 修改商家
+     * @param business 修改后的商家信息
+     * @return 修改操作返回的执行成功的行数
+     */
+    int updateBusiness(Business business);
+
+    /**
+     * 修改密码
+     * @param businessId 指定商家
+     * @param newPassword 新密码
+     * @return 修改操作返回的执行成功的行数
+     */
+    int updateBusinessPassword(Integer businessId, String newPassword);
+
+    /*
+        以下是对食品的操作
+     */
+
+    /**
      * 列出食品清单
      * @return 食品列表
      */
@@ -62,13 +88,5 @@ public interface BusinessDao {
      * @return 食物对象
      */
     Food selectFoodById(Integer businessId, Integer foodId);
-
-    /**
-     * 修改商家密码
-     * @param businessId 商家Id
-     * @param newPassword 新密码
-     * @return 修改操作所执行的行数
-     */
-    int updateBusinessPassword(Integer businessId, String newPassword);
 
 }

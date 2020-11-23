@@ -1,6 +1,7 @@
 package com.neusoft.elm.view.impl;
 
 import com.neusoft.elm.dao.BusinessDao;
+import com.neusoft.elm.dao.impl.AdminDaoImpl;
 import com.neusoft.elm.dao.impl.BusinessDaoImpl;
 import com.neusoft.elm.obj.Business;
 import com.neusoft.elm.obj.Food;
@@ -26,6 +27,74 @@ public class BusinessViewImpl implements BusinessView {
         System.out.print("password:");
         String password = sc.next();
         return businessDao.getBusinessByIdAndPassword(businessId, password);
+    }
+
+    @Override
+    public void outputBusinessById(Integer businessId) {
+        Business business = businessDao.getBusinessById(businessId);
+        System.out.println(business);
+    }
+
+    @Override
+    public void updateBusiness(Integer businessId) {
+        Business business = businessDao.getBusinessById(businessId);
+        System.out.println("please input some information!");
+        System.out.println("'null' or info");
+        String change = "null";
+
+        System.out.print("businessName:");
+        String businessName = sc.next();
+        if (!change.equals(businessName)) {
+            business.setBusinessName(businessName);
+        }
+
+        System.out.print("businessAddress:");
+        String businessAddress = sc.next();
+        if (!change.equals(businessAddress)) {
+            business.setBusinessAddress(businessAddress);
+        }
+
+        System.out.print("businessExplain:");
+        String businessExplain = sc.next();
+        if (!change.equals(businessExplain)) {
+            business.setBusinessExplain(businessExplain);
+        }
+
+        System.out.print("starPrice:");
+        String starPrice = sc.next();
+        if (!change.equals(starPrice)) {
+            business.setStarPrice(Double.valueOf(starPrice));
+        }
+
+        System.out.print("deliveryPrice:");
+        String deliveryPrice = sc.next();
+        if (!change.equals(deliveryPrice)) {
+            business.setDeliveryPrice(Double.valueOf(deliveryPrice));
+        }
+
+        int i = businessDao.updateBusiness(business);
+        if (i == 1) {
+            System.out.println("update business succeed!");
+        } else {
+            System.out.printf("update business have some problem, you changed %d lines\n", i);
+        }
+    }
+
+    @Override
+    public void updateBusinessPassword(Integer businessId) {
+        System.out.print("old password:");
+        String oldPassword = sc.next();
+
+        if (oldPassword.equals(businessDao.getBusinessById(businessId).getPassword())) {
+            System.out.print("new password:");
+            String newPassword = sc.next();
+            int i = businessDao.updateBusinessPassword(businessId, newPassword);
+            if (i == 1) {
+                System.out.println("update password succeed!");
+            }
+        } else {
+            System.out.println("password is wrong!");
+        }
     }
 
     @Override
